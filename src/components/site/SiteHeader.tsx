@@ -32,28 +32,27 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
-          {navLinks.map((l, i) => (
+          {navLinks.map((l) => (
             <Link
               key={l.to}
               to={l.to}
               activeOptions={{ exact: true }}
-              className="group flex items-baseline gap-1.5 text-sm font-medium text-navy-foreground/80 transition-colors hover:text-navy-foreground data-[status=active]:text-gold"
+              className="group flex items-baseline gap-1.5 text-sm font-semibold text-navy-foreground/85 transition-colors hover:text-navy-foreground data-[status=active]:text-gold"
             >
-              <span className="font-mono text-[10px] text-navy-foreground/40 group-data-[status=active]:text-gold">0{i + 1}</span>
               <span className="link-underline">{l.label}</span>
             </Link>
           ))}
         </nav>
 
         <div className="hidden items-center gap-6 lg:flex">
-          <a href={company.phoneHref} className="label-mono text-navy-foreground/70 hover:text-gold">
+          <a href={company.phoneHref} className="text-sm font-semibold text-navy-foreground/80 hover:text-gold">
             {company.phone}
           </a>
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-2 border border-gold px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-gold transition hover:bg-gold hover:text-gold-foreground"
+            className="group inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition hover:bg-gold-soft"
           >
-            Get a quote <ArrowUpRight className="h-3.5 w-3.5" />
+            Get a Quote <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
         </div>
 
@@ -65,7 +64,7 @@ export function SiteHeader() {
       {open && (
         <nav className="h-[calc(100dvh-64px)] overflow-y-auto border-t border-navy-foreground/10 bg-navy-deep lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col px-6 py-8">
-            {navLinks.map((l, i) => (
+            {navLinks.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
@@ -73,7 +72,6 @@ export function SiteHeader() {
                 className="flex items-baseline gap-4 border-b border-navy-foreground/10 py-5 text-3xl font-extrabold text-navy-foreground data-[status=active]:text-gold"
                 style={{ fontFamily: "var(--font-display)", fontStretch: "112%" }}
               >
-                <span className="font-mono text-xs font-normal text-gold">0{i + 1}</span>
                 {l.label}
               </Link>
             ))}
