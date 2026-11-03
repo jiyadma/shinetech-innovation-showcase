@@ -13,3 +13,5 @@
 - Company contact details and nav links live in `src/lib/site.ts`; edit there so header, footer and contact page stay in sync.
 - Shared site chrome (header/footer) is rendered in `src/routes/__root.tsx`; page banners use `PageHero` from `src/components/site/PageHero.tsx` for consistency.
 - The contact form opens the visitor's email app (mailto) because there is no backend yet.
+- Client logos live as CDN asset pointers in `src/assets/clients/` and are listed once in `src/lib/clients.ts`; the home marquee and clients page both read that list.
+- Section layout uses `SectionHeader`, `PageHero` and `CtaBand` from `PageHero.tsx` and `<Reveal>` for scroll fade-ins, so every page shares the same editorial rhythm.
