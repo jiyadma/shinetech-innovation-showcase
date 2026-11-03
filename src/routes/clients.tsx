@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Quote } from "lucide-react";
 import lng from "@/assets/industry-lng.jpg";
 import { CtaBand, PageHero, SectionHeader } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
@@ -22,39 +23,34 @@ function Clients() {
   return (
     <>
       <PageHero
-        index="04"
         label="Our Clients"
-        title={<>Trusted by <span className="text-gold">energy leaders.</span></>}
-        subtitle="Energy majors, LNG operators and EPC contractors rely on us for equipment that performs."
+        title="Our Clients"
+        subtitle="We partner with leading organisations across the global energy sector."
         image={lng}
       />
 
-      <section className="mx-auto max-w-7xl px-6 py-28 md:py-36">
+      <section className="mx-auto max-w-7xl px-6 py-28">
         <SectionHeader
-          index="01"
-          label="Partnerships"
-          title="Built on reliability, measured in long-term partnerships."
-          intro="From oil and gas majors to engineering contractors, every partnership is shaped by tailored solutions, efficiency and integrity."
+          title="Trusted Across the Energy Value Chain"
+          intro="From oil and gas majors to engineering contractors, every partnership is built on tailored solutions, efficiency and integrity."
         />
-
-        <div className="mt-20 grid grid-cols-2 border-l border-t border-navy/10 md:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
           {clients.map((c, i) => (
-            <Reveal key={c.name} delay={(i % 5) * 80} className="border-b border-r border-navy/10">
-              <div className="group relative flex aspect-square flex-col bg-card p-5 transition-colors duration-500 hover:bg-cream">
-                <span className="label-mono text-muted-foreground/60">{String(i + 1).padStart(2, "0")}</span>
-                <div className="flex flex-1 items-center justify-center px-2">
+            <Reveal key={c.name} delay={(i % 5) * 80}>
+              <div className="group h-full border bg-card text-center transition duration-500 hover:-translate-y-2 hover:border-gold/60 hover:shadow-elevated">
+                <div className="flex h-40 items-center justify-center p-6">
                   <img
                     src={c.logo}
                     alt={`${c.name} logo`}
-                    className="max-h-24 w-auto max-w-full object-contain transition duration-500 group-hover:scale-105"
+                    className="max-h-28 w-auto max-w-full object-contain transition duration-500 group-hover:scale-105"
                     width={375}
                     height={240}
                     loading="lazy"
                   />
                 </div>
-                <div className="border-t border-navy/10 pt-3">
-                  <p className="text-sm font-semibold leading-tight text-navy">{c.name}</p>
-                  <p className="label-mono mt-1 text-[10px] text-gold">{c.sector}</p>
+                <div className="border-t px-4 py-4">
+                  <p className="text-sm font-bold leading-tight text-navy">{c.name}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{c.sector}</p>
                 </div>
               </div>
             </Reveal>
@@ -62,25 +58,19 @@ function Clients() {
         </div>
       </section>
 
-      <section className="bg-muted">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-28 md:grid-cols-12 md:py-36">
-          <Reveal className="md:col-span-3">
-            <span className="label-mono text-muted-foreground">(02) <span className="text-gold">— Our promise</span></span>
-          </Reveal>
-          <Reveal delay={120} className="md:col-span-9">
-            <p className="text-3xl font-bold leading-snug text-navy md:text-5xl md:leading-[1.15]" style={{ fontFamily: "var(--font-display)" }}>
-              “We measure our success by the uptime, safety and confidence our equipment brings to our
-              partners' operations.”
-            </p>
-            <div className="mt-10 flex items-center gap-4">
-              <span className="h-px w-12 bg-gold" />
-              <span className="label-mono text-navy">Shinetech Innovate Management</span>
-            </div>
-          </Reveal>
-        </div>
+      <section className="bg-navy">
+        <Reveal className="mx-auto max-w-4xl px-6 py-28 text-center">
+          <Quote className="mx-auto h-12 w-12 text-gold" />
+          <p className="mt-8 text-2xl font-semibold leading-relaxed text-navy-foreground md:text-3xl">
+            "We measure our success by the uptime, safety and confidence our equipment brings to our
+            partners' operations."
+          </p>
+          <span className="gold-rule mx-auto mt-8" />
+          <p className="mt-5 text-sm font-bold uppercase tracking-wider text-gold">Shinetech Innovate Management</p>
+        </Reveal>
       </section>
 
-      <CtaBand title="Become our next partner." text="Join the operators and contractors who rely on a supply partner that truly delivers." />
+      <CtaBand title="Become Our Next Partner" text="Join the operators and contractors who rely on a supply partner that truly delivers." />
     </>
   );
 }

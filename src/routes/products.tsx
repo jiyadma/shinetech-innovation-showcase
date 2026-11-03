@@ -76,12 +76,10 @@ function Feature({ id, n, title, img, reverse, children }: { id: string; n: stri
       <Reveal className={`md:col-span-6 ${reverse ? "md:order-2 md:col-start-7" : ""}`}>
         <div className="relative overflow-hidden">
           <img src={img} alt={title} className="aspect-[4/5] w-full object-cover" width={1024} height={1024} loading="lazy" />
-          <span className="absolute left-0 top-0 bg-navy-deep px-5 py-3 font-mono text-sm text-gold">{n}</span>
         </div>
       </Reveal>
       <Reveal delay={150} className={`md:col-span-5 md:pt-10 ${reverse ? "md:col-start-1" : "md:col-start-8"}`}>
-        <span className="label-mono text-gold">Category {n}</span>
-        <h2 className="mt-4 text-4xl font-extrabold leading-[1.02] text-navy md:text-5xl">{title}</h2>
+        <h2 className=" text-4xl font-extrabold leading-[1.02] text-navy md:text-5xl">{title}</h2>
         <div className="mt-8 space-y-4 leading-relaxed text-muted-foreground">{children}</div>
       </Reveal>
     </div>
@@ -92,9 +90,8 @@ function Products() {
   return (
     <>
       <PageHero
-        index="03"
         label="Our Products"
-        title={<>Complete <span className="text-gold">process</span> solutions.</>}
+        title="Our Products"
         subtitle="Valves, instrumentation, automation and mechanical equipment for the full energy value chain."
       />
 
@@ -103,8 +100,7 @@ function Products() {
         <div className="mx-auto flex max-w-7xl gap-8 overflow-x-auto px-6">
           {categories.map((c) => (
             <a key={c.id} href={`#${c.id}`} className="group flex shrink-0 items-baseline gap-2 py-4 text-sm font-semibold text-navy">
-              <span className="font-mono text-[10px] text-gold">{c.n}</span>
-              <span className="link-underline">{c.name}</span>
+                            <span className="link-underline">{c.name}</span>
             </a>
           ))}
         </div>
@@ -120,11 +116,11 @@ function Products() {
           <p>Advanced valve automation tailored to customer specifications, with engineers supporting selection, sizing and integration.</p>
           <div className="grid gap-8 pt-4 sm:grid-cols-2">
             <div>
-              <h3 className="label-mono text-navy">Actuator types</h3>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-navy">Actuator types</h3>
               <p className="mt-3 text-sm">Hydraulic · Pneumatic · Gas-over-oil · Electric · Electro-hydraulic</p>
             </div>
             <div>
-              <h3 className="label-mono text-navy">Configurations</h3>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-navy">Configurations</h3>
               <p className="mt-3 text-sm">Single / double acting · On/Off, ESD/SDV, blowdown · Smart systems</p>
             </div>
           </div>
@@ -134,14 +130,11 @@ function Products() {
       {/* Types of valves */}
       <section className="bg-muted py-28 md:py-36">
         <div className="mx-auto max-w-7xl px-6">
-          <SectionHeader index="01.1" label="Range" title="Types of valves" />
+          <SectionHeader title="Types of Valves" intro="A complete range of on/off and control valves from approved manufacturers." />
           <div className="mt-16 grid border-l border-t border-navy/10 sm:grid-cols-2 lg:grid-cols-3">
             {valves.map((v, i) => (
               <Reveal key={v.name} delay={(i % 3) * 90} className="border-b border-r border-navy/10">
                 <div className="group h-full bg-card p-8 transition-colors duration-500 hover:bg-cream">
-                  <div className="flex items-start justify-between">
-                    <span className="label-mono text-muted-foreground/60">V-{String(i + 1).padStart(2, "0")}</span>
-                  </div>
                   <img src={v.img} alt={v.name} className="mx-auto my-6 h-48 w-48 object-contain mix-blend-multiply transition duration-700 group-hover:scale-105" width={480} height={480} loading="lazy" />
                   <h3 className="text-2xl font-bold text-navy">{v.name}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{v.items.join(" · ")}</p>
@@ -155,7 +148,7 @@ function Products() {
                 <h3 className="text-2xl font-bold text-navy-foreground">{v.name}</h3>
                 <ul className="mt-6 flex flex-wrap gap-2">
                   {v.items.map((i) => (
-                    <li key={i} className="label-mono border border-navy-foreground/20 px-3 py-2 text-navy-foreground/80">{i}</li>
+                    <li key={i} className="rounded-full border border-navy-foreground/20 px-4 py-1.5 text-sm text-navy-foreground/85">{i}</li>
                   ))}
                 </ul>
               </Reveal>
@@ -178,13 +171,12 @@ function Products() {
       {/* Field instruments */}
       <section className="bg-navy-deep py-28 md:py-36">
         <div className="mx-auto max-w-7xl px-6">
-          <SectionHeader index="02.1" label="Measurement" title="Field instruments" light />
-          <div className="mt-16 md:ml-[25%]">
+          <SectionHeader title="Field Instruments" intro="Accurate measurement and protection for every process variable." light />
+          <div className="mx-auto mt-16 max-w-5xl">
             {fieldInstruments.map((f, i) => (
               <Reveal key={f.title} delay={i * 60}>
-                <div className="group grid gap-3 border-t border-navy-foreground/15 py-7 md:grid-cols-[80px_1fr_1.3fr] md:gap-8">
-                  <span className="font-mono text-sm text-gold">/0{i + 1}</span>
-                  <h3 className="text-xl font-bold text-navy-foreground transition-transform duration-500 group-hover:translate-x-2">{f.title}</h3>
+                <div className="group grid gap-3 border-t border-navy-foreground/15 py-7 md:grid-cols-[24px_1fr_1.3fr] md:gap-8">
+                  <span className="mt-2 h-2 w-2 bg-gold" />                  <h3 className="text-xl font-bold text-navy-foreground transition-transform duration-500 group-hover:translate-x-2">{f.title}</h3>
                   <p className="text-sm leading-relaxed text-navy-foreground/60">{f.text}</p>
                 </div>
               </Reveal>
@@ -227,7 +219,7 @@ function Products() {
         </div>
       </section>
 
-      <CtaBand title="Send us your material list." />
+      <CtaBand title="Send Us Your Material List" />
     </>
   );
 }

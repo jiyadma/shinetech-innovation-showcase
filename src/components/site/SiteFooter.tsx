@@ -6,7 +6,7 @@ import { company, navLinks } from "@/lib/site";
 export function SiteFooter() {
   return (
     <footer className="bg-navy-deep text-navy-foreground/70">
-      <div className="mx-auto max-w-7xl px-6 pt-20">
+      <div className="mx-auto max-w-7xl px-6 pt-20 pb-2">
         <div className="grid gap-14 border-b border-navy-foreground/10 pb-16 md:grid-cols-12">
           <div className="md:col-span-5">
             <img src={logo.url} alt="Shinetech Innovate FZE LLC" className="h-12 w-auto" width={900} height={177} loading="lazy" />
@@ -17,12 +17,11 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-3">
-            <h4 className="label-mono text-gold">Index</h4>
+            <h4 className="text-lg font-bold text-navy-foreground">Quick Links</h4>
             <ul className="mt-6 space-y-3 text-sm">
-              {navLinks.map((l, i) => (
+              {navLinks.map((l) => (
                 <li key={l.to}>
                   <Link to={l.to} className="group inline-flex items-baseline gap-3 hover:text-navy-foreground">
-                    <span className="font-mono text-[10px] text-navy-foreground/35">0{i + 1}</span>
                     <span className="link-underline">{l.label}</span>
                   </Link>
                 </li>
@@ -31,7 +30,7 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-4">
-            <h4 className="label-mono text-gold">Contact</h4>
+            <h4 className="text-lg font-bold text-navy-foreground">Get in Touch</h4>
             <dl className="mt-6 space-y-4 text-sm">
               {[
                 ["Office", company.address],
@@ -40,7 +39,7 @@ export function SiteFooter() {
                 ["Hours", company.hours],
               ].map(([k, v, href]) => (
                 <div key={k} className="grid grid-cols-[72px_1fr] gap-4">
-                  <dt className="label-mono pt-0.5 text-navy-foreground/40">{k}</dt>
+                  <dt className="pt-0.5 text-xs font-bold uppercase tracking-wider text-gold">{k}</dt>
                   <dd>{href ? <a href={href} className="link-underline hover:text-navy-foreground">{v}</a> : v}</dd>
                 </div>
               ))}
@@ -56,17 +55,10 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div
-          aria-hidden
-          className="select-none overflow-hidden whitespace-nowrap pt-10 text-[17vw] font-extrabold uppercase leading-[0.8] text-outline md:text-[13vw]"
-          style={{ fontFamily: "var(--font-display)", fontStretch: "125%" }}
-        >
-          Shinetech
-        </div>
 
-        <div className="flex flex-col items-start justify-between gap-4 py-8 sm:flex-row sm:items-center">
-          <p className="label-mono text-navy-foreground/45">© {new Date().getFullYear()} {company.name}</p>
-          <a href="#top" className="label-mono inline-flex items-center gap-2 text-navy-foreground/60 hover:text-gold">
+        <div className="flex flex-col items-start justify-between gap-4 py-6 sm:flex-row sm:items-center">
+          <p className="text-sm text-navy-foreground/50">© {new Date().getFullYear()} {company.name}</p>
+          <a href="#top" className="inline-flex items-center gap-2 text-sm text-navy-foreground/60 hover:text-gold">
             Back to top <ArrowUp className="h-3.5 w-3.5" />
           </a>
         </div>

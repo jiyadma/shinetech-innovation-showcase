@@ -26,7 +26,7 @@ const inputCls =
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="label-mono text-muted-foreground">{label}</span>
+      <span className="text-xs font-bold uppercase tracking-wider text-navy/70">{label}</span>
       {children}
     </label>
   );
@@ -53,17 +53,16 @@ function Contact() {
   return (
     <>
       <PageHero
-        index="05"
         label="Contact Us"
-        title={<>Let's talk <span className="text-gold">specifications.</span></>}
+        title="Contact Us"
         subtitle="Request a quotation or speak with our technical team — we reply within 24 hours."
         image={power}
       />
 
       <section className="mx-auto grid max-w-7xl gap-20 px-6 py-28 md:py-36 lg:grid-cols-12">
         <Reveal className="lg:col-span-4">
-          <span className="label-mono text-muted-foreground">(01) <span className="text-gold">— Direct lines</span></span>
-          <h2 className="mt-6 text-4xl font-extrabold leading-tight text-navy">Reach the team.</h2>
+          <h2 className="text-4xl font-extrabold leading-tight text-navy">Get in Touch</h2>
+          <span className="gold-rule mt-6" />
           <p className="mt-6 leading-relaxed text-muted-foreground">
             Share your enquiry, data sheet or material list and we'll come back with a competitive
             quotation and technical recommendations.
@@ -71,7 +70,7 @@ function Contact() {
           <dl className="mt-12">
             {details.map((d) => (
               <div key={d.k} className="border-t border-navy/15 py-5">
-                <dt className="label-mono text-gold">{d.k}</dt>
+                <dt className="text-xs font-bold uppercase tracking-wider text-gold">{d.k}</dt>
                 <dd className="mt-2 text-lg font-semibold text-navy">
                   {d.href ? <a href={d.href} className="link-underline">{d.v}</a> : d.v}
                 </dd>
@@ -81,8 +80,8 @@ function Contact() {
         </Reveal>
 
         <Reveal delay={150} className="lg:col-span-7 lg:col-start-6">
-          <form onSubmit={onSubmit} className="bg-cream p-8 md:p-14">
-            <span className="label-mono text-muted-foreground">(02) <span className="text-gold">— Enquiry form</span></span>
+          <form onSubmit={onSubmit} className="bg-card p-8 shadow-elevated md:p-12">
+            <h3 className="text-2xl font-extrabold text-navy">Send Us an Enquiry</h3>
             <div className="mt-10 grid gap-10 sm:grid-cols-2">
               <Field label="Full name *">
                 <input required placeholder="Full name" className={inputCls} value={form.name} onChange={set("name")} maxLength={100} />
@@ -104,9 +103,9 @@ function Contact() {
             </div>
             <button
               type="submit"
-              className="group mt-12 inline-flex items-center gap-3 bg-navy py-4 pl-7 pr-5 text-sm font-bold uppercase tracking-wider text-navy-foreground transition hover:bg-gold hover:text-gold-foreground"
+              className="group mt-12 inline-flex items-center gap-3 rounded-full bg-navy px-8 py-4 text-sm font-bold uppercase tracking-wider text-navy-foreground transition hover:bg-gold hover:text-gold-foreground"
             >
-              Send enquiry
+              Send Enquiry
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </button>
           </form>
