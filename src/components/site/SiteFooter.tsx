@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="bg-navy-deep text-navy-foreground/75">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <img src={logo.url} alt="Shinetech Innovate FZE LLC" className="h-14 w-auto" width={900} height={229} loading="lazy" />
+          <img src={logo.url} alt="Shinetech Innovate FZE LLC" className="h-14 w-auto" width={900} height={177} loading="lazy" />
           <p className="mt-6 max-w-sm text-sm leading-relaxed">
             Shinetech Innovate supplies valves, instrumentation, automation and mechanical
             equipment to the oil &amp; gas, LNG, chemical and power industries — delivered

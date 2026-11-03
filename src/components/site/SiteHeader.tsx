@@ -36,7 +36,7 @@ export function SiteHeader() {
       <div className="border-b border-navy-foreground/10 bg-navy text-navy-foreground">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3">
           <Link to="/" className="shrink-0" aria-label="Shinetech Innovate home">
-            <img src={logo.url} alt="Shinetech Innovate FZE LLC" className="h-11 w-auto md:h-12" width={900} height={229} />
+            <img src={logo.url} alt="Shinetech Innovate FZE LLC" className="h-9 w-auto md:h-11" width={900} height={177} />
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">
