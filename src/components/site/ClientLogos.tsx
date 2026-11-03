@@ -15,7 +15,7 @@ export function ClientMarquee() {
             <img
               src={c.logo}
               alt={i < clients.length ? `${c.name} logo` : ""}
-              className="max-h-20 w-auto max-w-full object-contain opacity-60 grayscale transition duration-500 group-hover:opacity-100 group-hover:grayscale-0"
+              className="max-h-24 w-auto max-w-full object-contain opacity-80 grayscale transition duration-500 group-hover:opacity-100 group-hover:grayscale-0"
               width={375}
               height={240}
               loading="lazy"
