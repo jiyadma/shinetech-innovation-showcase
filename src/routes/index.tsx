@@ -1,15 +1,31 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, Cog, Eye, Handshake, Leaf, ShieldCheck, Sparkles, TrendingUp, Zap } from "lucide-react";
+import { useState } from "react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Award,
+  Cog,
+  Eye,
+  Gauge,
+  Handshake,
+  Leaf,
+  Settings2,
+  ShieldCheck,
+  Sparkles,
+  TrendingUp,
+  Wrench,
+  Zap,
+} from "lucide-react";
 import heroImg from "@/assets/hero-refinery.jpg";
 import oilgas from "@/assets/industry-oilgas.jpg";
 import lng from "@/assets/industry-lng.jpg";
 import chemicals from "@/assets/industry-chemicals.jpg";
 import power from "@/assets/industry-power.jpg";
 import hydrogen from "@/assets/industry-hydrogen.jpg";
-import automation from "@/assets/product-automation.jpg";
-import { CtaBand, SectionHeader } from "@/components/site/PageHero";
+import valveActuator from "@/assets/product-valve-actuator.jpg";
+import { CtaBand, SectionHeader, SlashMark } from "@/components/site/PageHero";
+import { ClientMarquee } from "@/components/site/ClientLogos";
 import { Reveal } from "@/components/site/Reveal";
-import { clients } from "@/lib/clients";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,137 +41,223 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const categories = [
+  { icon: Settings2, title: "Valves & Actuation", text: "Ball, gate, globe, butterfly, check and plug valves." },
+  { icon: Gauge, title: "Field Instruments", text: "Pressure, temperature, flow and level measurement." },
+  { icon: Cog, title: "Control & Automation", text: "Control systems, positioners and safety solutions." },
+  { icon: Wrench, title: "Mechanical Equipment", text: "Static equipment, spares and special services." },
+];
+
 const pillars = [
-  { icon: Cog, title: "Engineered Supply", text: "Valves, actuators and instruments sourced to exact project specifications and international standards." },
-  { icon: Award, title: "Expertise that Delivers", text: "An experienced technical team that understands process plants and turns requirements into reliable solutions." },
-  { icon: Leaf, title: "Sustainability First", text: "Responsible sourcing and energy-efficient equipment that supports a cleaner energy future." },
+  { icon: Cog, title: "Engineered Supply", text: "Sourced to exact project specifications and international standards." },
+  { icon: Award, title: "Expertise that Delivers", text: "A technical team that understands process plants and their demands." },
+  { icon: Leaf, title: "Sustainability First", text: "Responsible sourcing and energy-efficient equipment for a cleaner future." },
 ];
 
 const industries = [
-  { img: oilgas, title: "Oil & Gas, Refinery" },
-  { img: lng, title: "Liquefied Natural Gas" },
-  { img: chemicals, title: "Fertilizer & Chemicals" },
-  { img: power, title: "Power" },
-  { img: hydrogen, title: "Green Hydrogen" },
+  { img: oilgas, title: "Oil & Gas, Refinery", text: "Isolation and control valves, instruments and spares for upstream and refining." },
+  { img: lng, title: "Liquefied Natural Gas", text: "Cryogenic-rated valves and instrumentation for liquefaction and export terminals." },
+  { img: chemicals, title: "Fertilizer & Chemicals", text: "Corrosion-resistant materials and severe-service equipment for chemical plants." },
+  { img: power, title: "Power", text: "Steam, feedwater and turbine-auxiliary valves and controls for power generation." },
+  { img: hydrogen, title: "Green Hydrogen", text: "High-integrity components for electrolysis, storage and new-energy projects." },
 ];
 
 const qualities = [
   { icon: ShieldCheck, title: "Trusted by Industry", text: "Chosen by operators and EPC contractors for reliability and consistent quality." },
-  { icon: Zap, title: "Agile and Responsive", text: "Fast quotations, quick sourcing and personal support that keep your project on schedule." },
+  { icon: Zap, title: "Agile and Responsive", text: "Fast quotations, quick sourcing and personal support that keep projects on schedule." },
   { icon: Eye, title: "Transparent Operations", text: "Clear pricing, documentation and traceability at every step of the order." },
   { icon: Handshake, title: "Building Partnerships", text: "Long-term relationships built on trust, integrity and mutual success." },
-  { icon: TrendingUp, title: "Growth Through Innovation", text: "Continuously adopting new technologies and smarter ways to serve the energy sector." },
-  { icon: Sparkles, title: "Excellence in Every Order", text: "Superior service and outcomes, from the first enquiry to after-sales support." },
+  { icon: TrendingUp, title: "Growth Through Innovation", text: "Adopting new technologies and smarter ways to serve the energy sector." },
+  { icon: Sparkles, title: "Excellence in Every Order", text: "Superior service, from the first enquiry to after-sales support." },
 ];
 
 function Index() {
+  const [active, setActive] = useState(0);
+
   return (
     <>
-      {/* Hero */}
+      {/* Hero — split layout with the logo's slanted cut */}
       <section className="relative isolate overflow-hidden bg-navy-deep">
-        <img src={heroImg} alt="Refinery at night" className="animate-slow-zoom absolute inset-0 -z-20 h-full w-full object-cover" width={1920} height={1088} />
-        <div className="absolute inset-0 -z-10 bg-hero-overlay" />
-        <div className="mx-auto flex max-w-4xl flex-col items-center px-6 pb-56 pt-44 text-center md:pb-64 md:pt-52">
-          <h1 className="animate-rise text-4xl font-extrabold leading-[1.08] text-navy-foreground sm:text-5xl md:text-7xl">
-            Powering Industry
-            <br />
-            With <span className="text-gold">Precision</span>
-          </h1>
-          <p className="animate-rise mt-7 max-w-2xl text-lg leading-relaxed text-navy-foreground/85 [animation-delay:150ms]">
-            Shinetech Innovate supplies valves, instrumentation and automation solutions to the energy
-            sector — combining technical expertise and reliable sourcing to build lasting partnerships.
-          </p>
-          <div className="animate-rise mt-10 flex flex-wrap justify-center gap-4 [animation-delay:300ms]">
-            <Link to="/products" className="group inline-flex items-center gap-2 rounded-full bg-gold px-8 py-4 text-sm font-bold text-gold-foreground shadow-gold transition hover:bg-gold-soft">
-              Our Products <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border border-navy-foreground/60 px-8 py-4 text-sm font-bold text-navy-foreground transition hover:border-gold hover:text-gold">
-              Contact Us
-            </Link>
+        <div className="absolute inset-0 -z-30 bg-diagonal" />
+        <div className="glow-gold absolute -left-60 top-20 -z-20 h-[640px] w-[640px] opacity-50" />
+
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-16 pt-36 lg:grid-cols-12 lg:items-center lg:gap-8 lg:pb-24 lg:pt-44">
+          <div className="lg:col-span-6">
+            <div className="animate-rise flex items-center gap-4">
+              <SlashMark />
+              <span className="text-sm font-semibold text-navy-foreground/70">Industrial supply partner · United Arab Emirates</span>
+            </div>
+            <h1 className="animate-rise mt-8 text-[2.6rem] font-extrabold leading-[1.04] text-navy-foreground sm:text-6xl xl:text-7xl [animation-delay:120ms]">
+              Engineered supply for the <span className="text-gold">energy industry</span>
+            </h1>
+            <p className="animate-rise mt-7 max-w-lg text-lg leading-relaxed text-navy-foreground/75 [animation-delay:220ms]">
+              Valves, instrumentation, automation and mechanical equipment — sourced from approved
+              manufacturers and delivered with full documentation, on time.
+            </p>
+            <div className="animate-rise mt-10 flex flex-wrap gap-4 [animation-delay:320ms]">
+              <Link to="/products" className="cut-corners group inline-flex items-center gap-2 bg-gold px-8 py-4 text-sm font-bold text-gold-foreground shadow-gold transition hover:bg-gold-soft">
+                Explore Products <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link to="/contact" className="cut-corners inline-flex items-center gap-2 bg-navy px-8 py-4 text-sm font-bold text-navy-foreground transition hover:bg-navy-foreground hover:text-navy">
+                Request a Quote
+              </Link>
+            </div>
+          </div>
+
+          <div className="animate-rise relative h-80 sm:h-[440px] lg:col-span-6 lg:h-[560px] [animation-delay:200ms]">
+            <div className="clip-para absolute inset-y-0 left-[6%] right-0 translate-x-5 translate-y-5 bg-gold" />
+            <div className="clip-para absolute inset-y-0 left-[6%] right-0 overflow-hidden bg-navy">
+              <img src={heroImg} alt="Refinery at night" className="animate-slow-zoom h-full w-full object-cover" width={1920} height={1088} />
+            </div>
+            <div className="cut-corners absolute -bottom-6 left-0 hidden max-w-[260px] bg-card p-6 shadow-elevated sm:block">
+              <ShieldCheck className="h-8 w-8 text-gold" strokeWidth={1.5} />
+              <p className="mt-3 text-lg font-bold leading-snug text-navy" style={{ fontFamily: "var(--font-display)" }}>
+                Approved brands, certified quality
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">Material certificates and test reports with every order.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Product category strip */}
+        <div className="border-t border-navy-foreground/10">
+          <div className="mx-auto grid max-w-7xl sm:grid-cols-2 lg:grid-cols-4">
+            {categories.map((c) => (
+              <Link
+                key={c.title}
+                to="/products"
+                className="group relative flex gap-4 border-b border-navy-foreground/10 px-6 py-8 transition hover:bg-navy sm:border-r lg:border-b-0"
+              >
+                <c.icon className="mt-0.5 h-6 w-6 shrink-0 text-gold" strokeWidth={1.5} />
+                <div>
+                  <h3 className="flex items-center gap-2 font-bold text-navy-foreground">
+                    {c.title}
+                    <ArrowUpRight className="h-4 w-4 text-gold opacity-0 transition group-hover:opacity-100" />
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-navy-foreground/60">{c.text}</p>
+                </div>
+                <span className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100" />
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Pillars overlapping the hero */}
-      <section className="relative z-10 mx-auto -mt-36 max-w-6xl px-6">
-        <div className="grid gap-6 md:grid-cols-3 md:gap-0">
-          {pillars.map((p, i) => {
-            const featured = i === 1;
-            return (
-              <Reveal key={p.title} delay={i * 120}>
-                <div
-                  className={`group relative h-full overflow-hidden px-8 py-12 text-center shadow-elevated transition duration-500 hover:-translate-y-2 ${
-                    featured ? "bg-navy md:-mt-6 md:pb-[4.5rem]" : "bg-card"
-                  }`}
-                >
-                  <div className={`mx-auto grid h-20 w-20 place-items-center rounded-full ${featured ? "bg-gold text-gold-foreground" : "bg-cream text-gold"}`}>
-                    <p.icon className="h-9 w-9" strokeWidth={1.5} />
+      {/* Who we are */}
+      <section className="mx-auto grid max-w-7xl gap-16 px-6 py-24 md:py-32 lg:grid-cols-12 lg:items-center">
+        <Reveal className="relative lg:col-span-5">
+          <div className="cut-corners relative aspect-[4/5] overflow-hidden">
+            <img src={valveActuator} alt="Actuated industrial valve" className="h-full w-full object-cover" width={1024} height={1024} loading="lazy" />
+          </div>
+          <div className="absolute -right-4 -top-4 -z-10 h-2/3 w-2/3 bg-gold/20" />
+          <div className="cut-corners absolute -bottom-8 right-6 bg-navy px-7 py-6 text-navy-foreground shadow-elevated">
+            <p className="text-3xl font-extrabold text-gold" style={{ fontFamily: "var(--font-display)" }}>24h</p>
+            <p className="mt-1 text-sm text-navy-foreground/70">Quotation turnaround</p>
+          </div>
+        </Reveal>
+
+        <div className="lg:col-span-7 lg:pl-8">
+          <SectionHeader title="A supply partner built on precision and integrity" />
+          <Reveal delay={100}>
+            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Shinetech Innovate helps operators and EPC contractors source the right equipment the
+              first time — combining technical know-how with dependable sourcing, transparent pricing
+              and personal support from enquiry to delivery.
+            </p>
+          </Reveal>
+          <div className="mt-10 divide-y border-y">
+            {pillars.map((p, i) => (
+              <Reveal key={p.title} delay={150 + i * 80}>
+                <div className="group flex items-start gap-5 py-6">
+                  <div className="cut-corners-sm grid h-12 w-12 shrink-0 place-items-center bg-cream text-gold transition group-hover:bg-gold group-hover:text-gold-foreground">
+                    <p.icon className="h-5 w-5" strokeWidth={1.75} />
                   </div>
-                  <h3 className={`mt-7 text-xl font-bold ${featured ? "text-navy-foreground" : "text-navy"}`}>{p.title}</h3>
-                  <p className={`mt-4 text-[15px] leading-relaxed ${featured ? "text-navy-foreground/75" : "text-muted-foreground"}`}>{p.text}</p>
-                  <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100" />
+                  <div>
+                    <h3 className="text-lg font-bold text-navy">{p.title}</h3>
+                    <p className="mt-1 text-muted-foreground">{p.text}</p>
+                  </div>
                 </div>
               </Reveal>
-            );
-          })}
+            ))}
+          </div>
+          <Reveal delay={400}>
+            <Link to="/about" className="group mt-10 inline-flex items-center gap-2 text-sm font-bold text-navy hover:text-gold">
+              <span className="link-underline">More about Shinetech</span>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
         </div>
       </section>
 
-      {/* Industries */}
-      <section className="mx-auto max-w-7xl px-6 py-28">
-        <SectionHeader title="Industries We Serve" intro="Dependable equipment for every stage of the energy value chain." />
-        <div className="mt-16 grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5">
-          {industries.map((ind, i) => (
-            <Reveal key={ind.title} delay={i * 90} className={i === 4 ? "col-span-2 md:col-span-1" : ""}>
-              <Link to="/products" className="group block overflow-hidden bg-card shadow-elevated">
-                <div className="relative aspect-[4/5] overflow-hidden">
-                  <img src={ind.img} alt={ind.title} className="h-full w-full object-cover transition duration-[1.2s] ease-out group-hover:scale-110" width={800} height={1008} loading="lazy" />
-                  <div className="absolute inset-0 bg-navy-deep/0 transition duration-500 group-hover:bg-navy-deep/25" />
-                </div>
-                <div className="relative px-4 py-5 text-center">
-                  <span className="absolute left-1/2 top-0 h-0.5 w-10 -translate-x-1/2 bg-gold transition-all duration-500 group-hover:w-full" />
-                  <h3 className="text-sm font-extrabold uppercase tracking-wide text-navy md:text-base">{ind.title}</h3>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Empowering band */}
+      {/* Industries — expanding panels */}
       <section className="relative isolate overflow-hidden bg-navy">
-        <img src={automation} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" width={1024} height={1024} loading="lazy" />
-        <div className="absolute inset-0 -z-10 bg-navy-deep/80" />
-        <Reveal className="mx-auto max-w-4xl px-6 py-28 text-center md:py-36">
-          <h2 className="text-4xl font-extrabold text-navy-foreground md:text-6xl">Empowering Energy Excellence</h2>
-          <span className="gold-rule mx-auto mt-6" />
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-navy-foreground/80">
-            Shinetech Innovate delivers dependable equipment and technical solutions focused on
-            efficiency, transparency and safety — helping our clients achieve industry-leading results.
-          </p>
-          <Link to="/about" className="group mt-10 inline-flex items-center gap-2 rounded-full border border-gold px-8 py-4 text-sm font-bold text-gold transition hover:bg-gold hover:text-gold-foreground">
-            Learn More About Us <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-        </Reveal>
+        <div className="absolute inset-0 -z-10 bg-diagonal" />
+        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+          <SectionHeader light title="Industries We Serve" intro="Dependable equipment for every stage of the energy value chain — from wellhead to power grid." />
+
+          <Reveal className="mt-16 flex flex-col gap-3 lg:h-[540px] lg:flex-row">
+            {industries.map((ind, i) => {
+              const isActive = active === i;
+              return (
+                <Link
+                  key={ind.title}
+                  to="/products"
+                  onMouseEnter={() => setActive(i)}
+                  onFocus={() => setActive(i)}
+                  className={`cut-corners group relative h-64 overflow-hidden transition-[flex-grow] duration-700 ease-out lg:h-auto ${
+                    isActive ? "lg:flex-[4]" : "lg:flex-1"
+                  }`}
+                >
+                  <img src={ind.img} alt={ind.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" width={800} height={1008} loading="lazy" />
+                  <div className="bg-card-fade absolute inset-0" />
+                  <div className={`absolute inset-0 bg-navy-deep/40 transition duration-700 ${isActive ? "lg:opacity-0" : "lg:opacity-100"}`} />
+                  <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
+                    <span className={`block h-1 bg-gold transition-all duration-700 ${isActive ? "w-14" : "w-14 lg:w-6"}`} />
+                    <h3 className={`mt-4 font-extrabold text-navy-foreground transition-all duration-500 ${isActive ? "text-2xl" : "text-xl lg:text-base"}`}>
+                      {ind.title}
+                    </h3>
+                    <p
+                      className={`mt-2 max-w-sm text-sm leading-relaxed text-navy-foreground/75 transition-all duration-500 ${
+                        isActive ? "lg:max-h-24 lg:opacity-100" : "lg:max-h-0 lg:overflow-hidden lg:opacity-0"
+                      }`}
+                    >
+                      {ind.text}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+          </Reveal>
+        </div>
       </section>
 
-      {/* Quality Services */}
-      <section className="bg-muted">
-        <div className="mx-auto max-w-7xl px-6 py-28">
-          <SectionHeader
-            title="Quality Services"
-            intro="We lead with innovation, emphasising transparency, efficiency and reliability in every supply."
-          />
-          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Why Shinetech */}
+      <section className="bg-cream">
+        <div className="mx-auto grid max-w-7xl gap-14 px-6 py-24 md:py-32 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-32">
+              <SectionHeader title="Why Clients Choose Shinetech" />
+              <Reveal delay={100}>
+                <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+                  We lead with transparency, efficiency and reliability — so every supply arrives right,
+                  documented and on schedule.
+                </p>
+                <Link to="/contact" className="cut-corners group mt-9 inline-flex items-center gap-2 bg-navy px-7 py-4 text-sm font-bold text-navy-foreground transition hover:bg-gold hover:text-gold-foreground">
+                  Talk to Our Team <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Reveal>
+            </div>
+          </div>
+
+          <div className="grid gap-px overflow-hidden bg-border sm:grid-cols-2 lg:col-span-8">
             {qualities.map((q, i) => (
-              <Reveal key={q.title} delay={(i % 3) * 100}>
-                <div className="group relative h-full overflow-hidden bg-card p-10 text-center transition duration-500 hover:-translate-y-2 hover:shadow-elevated">
-                  <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border border-gold/40 text-gold transition duration-500 group-hover:border-gold group-hover:bg-gold group-hover:text-gold-foreground">
-                    <q.icon className="h-7 w-7" strokeWidth={1.5} />
+              <Reveal key={q.title} delay={(i % 2) * 100} className="bg-card">
+                <div className="group relative h-full p-9 transition duration-500 hover:bg-navy">
+                  <div className="cut-corners-sm grid h-12 w-12 place-items-center bg-gold/15 text-gold transition group-hover:bg-gold group-hover:text-gold-foreground">
+                    <q.icon className="h-5 w-5" strokeWidth={1.75} />
                   </div>
-                  <h3 className="mt-6 text-xl font-bold text-navy">{q.title}</h3>
-                  <p className="mt-3 leading-relaxed text-muted-foreground">{q.text}</p>
-                  <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100" />
+                  <h3 className="mt-6 text-xl font-bold text-navy transition group-hover:text-navy-foreground">{q.title}</h3>
+                  <p className="mt-3 leading-relaxed text-muted-foreground transition group-hover:text-navy-foreground/70">{q.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -164,31 +266,23 @@ function Index() {
       </section>
 
       {/* Clients */}
-      <section className="mx-auto max-w-7xl px-6 py-28">
-        <SectionHeader
-          title="Our Major Clients"
-          intro="We partner with leading players across the global energy sector — from energy majors to EPC contractors. Every partnership is built on tailored solutions, efficiency and integrity."
-        />
-        <div className="mt-16 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
-          {clients.map((c, i) => (
-            <Reveal key={c.name} delay={(i % 5) * 70}>
-              <div className="group flex h-36 items-center justify-center border bg-card p-6 transition duration-500 hover:-translate-y-1 hover:border-gold/60 hover:shadow-elevated">
-                <img
-                  src={c.logo}
-                  alt={`${c.name} logo`}
-                  className="max-h-24 w-auto max-w-full object-contain transition duration-500 group-hover:scale-105"
-                  width={375}
-                  height={240}
-                  loading="lazy"
-                />
-              </div>
+      <section className="py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <SectionHeader title="Our Major Clients" />
+            <Reveal className="max-w-md">
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                Energy majors and EPC contractors trust us for tailored solutions, efficiency and integrity.
+              </p>
+              <Link to="/clients" className="group mt-5 inline-flex items-center gap-2 text-sm font-bold text-navy hover:text-gold">
+                <span className="link-underline">View all clients</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </Reveal>
-          ))}
+          </div>
         </div>
-        <div className="mt-12 text-center">
-          <Link to="/clients" className="group inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-navy hover:text-gold">
-            View All Clients <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+        <div className="mt-16">
+          <ClientMarquee />
         </div>
       </section>
 
