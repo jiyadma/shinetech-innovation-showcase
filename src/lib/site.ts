@@ -17,17 +17,3 @@ export const navLinks = [
   { to: "/clients", label: "Our Clients" },
   { to: "/contact", label: "Contact Us" },
 ] as const;
-
-// Client types shown until real client logos are supplied.
-export const clientTypes = [
-  { name: "National Oil Companies", abbr: "NOC" },
-  { name: "Refinery Operators", abbr: "REF" },
-  { name: "LNG Terminal Operators", abbr: "LNG" },
-  { name: "Petrochemical Complexes", abbr: "PCX" },
-  { name: "Fertilizer Producers", abbr: "FRT" },
-  { name: "Independent Power Producers", abbr: "IPP" },
-  { name: "EPC Contractors", abbr: "EPC" },
-  { name: "Pipeline Operators", abbr: "PLN" },
-  { name: "Offshore Platform Operators", abbr: "OFS" },
-  { name: "Green Hydrogen Developers", abbr: "GH2" },
-] as const;
