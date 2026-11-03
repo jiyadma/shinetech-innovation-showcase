@@ -29,12 +29,12 @@ export function PageHero({
           <span className="label-mono">/</span>
           <span className="label-mono text-gold">{label}</span>
         </div>
-        <div className="mt-10 grid items-end gap-10 md:grid-cols-12">
-          <h1 className="animate-rise text-5xl font-extrabold uppercase leading-[0.95] text-navy-foreground md:col-span-8 md:text-7xl lg:text-8xl [animation-delay:100ms]">
+        <div className="mt-10 grid gap-10 md:grid-cols-12">
+          <h1 className="animate-rise text-[2.6rem] font-extrabold uppercase leading-[0.95] text-navy-foreground sm:text-6xl md:col-span-12 md:text-7xl lg:text-8xl [animation-delay:100ms]">
             {title}
           </h1>
           {subtitle && (
-            <p className="animate-rise max-w-sm text-base leading-relaxed text-navy-foreground/75 md:col-span-4 md:justify-self-end [animation-delay:250ms]">
+            <p className="animate-rise max-w-md text-lg leading-relaxed text-navy-foreground/75 md:col-span-5 md:col-start-8 [animation-delay:250ms]">
               {subtitle}
             </p>
           )}
