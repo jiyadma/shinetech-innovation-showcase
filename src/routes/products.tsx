@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import actuatorImg from "@/assets/product-valve-actuator.jpg";
 import automationImg from "@/assets/product-automation.jpg";
 import staticImg from "@/assets/product-static.jpg";
@@ -9,7 +10,8 @@ import check from "@/assets/valve-check.jpg";
 import gate from "@/assets/valve-gate.jpg";
 import globe from "@/assets/valve-globe.jpg";
 import plug from "@/assets/valve-plug.jpg";
-import { PageHero, SectionTitle } from "@/components/site/PageHero";
+import { CtaBand, PageHero, SectionHeader } from "@/components/site/PageHero";
+import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -24,6 +26,13 @@ export const Route = createFileRoute("/products")({
   }),
   component: Products,
 });
+
+const categories = [
+  { id: "valves", n: "01", name: "Valves – Actuation & Control" },
+  { id: "automation", n: "02", name: "Control & Automation" },
+  { id: "static", n: "03", name: "Static & Mechanical" },
+  { id: "services", n: "04", name: "Special Services" },
+];
 
 const valves = [
   { img: ball, name: "Ball Valves", items: ["Floating", "Trunnion", "Rising stem", "Dual Block & Bleed", "Top entry"] },
@@ -48,30 +57,33 @@ const fieldInstruments = [
   { title: "Flow Instruments", text: "Orifice, venturi, Coriolis, magnetic, ultrasonic, turbine and vortex flowmeters." },
 ];
 
-function ListBlock({ items }: { items: readonly string[] }) {
+function SpecList({ items }: { items: readonly string[] }) {
   return (
-    <ul className="mt-3 space-y-1 text-sm text-muted-foreground">
+    <ul className="grid gap-x-8 pt-4 sm:grid-cols-2">
       {items.map((i) => (
-        <li key={i} className="flex items-center justify-center gap-2">
-          <span className="h-1 w-1 bg-gold" /> {i}
+        <li key={i} className="flex items-baseline gap-3 border-t border-navy/10 py-3 text-sm text-navy">
+          <span className="h-1.5 w-1.5 shrink-0 translate-y-[-1px] bg-gold" />
+          {i}
         </li>
       ))}
     </ul>
   );
 }
 
-function Feature({ n, title, img, reverse, children }: { n: number; title: string; img: string; reverse?: boolean; children: React.ReactNode }) {
+function Feature({ id, n, title, img, reverse, children }: { id: string; n: string; title: string; img: string; reverse?: boolean; children: ReactNode }) {
   return (
-    <div className={`grid items-center gap-12 md:grid-cols-2 ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
-      <div className="relative">
-        <img src={img} alt={title} className="aspect-square w-full object-cover shadow-elevated" width={1024} height={1024} loading="lazy" />
-        <span className="absolute -top-5 left-6 bg-gold px-4 py-2 font-wide text-lg font-extrabold text-gold-foreground">0{n}</span>
-      </div>
-      <div>
-        <h2 className="text-3xl font-extrabold text-navy md:text-4xl">{title}</h2>
-        <span className="gold-rule mt-5" />
-        <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground">{children}</div>
-      </div>
+    <div id={id} className="scroll-mt-28 grid items-start gap-12 md:grid-cols-12">
+      <Reveal className={`md:col-span-6 ${reverse ? "md:order-2 md:col-start-7" : ""}`}>
+        <div className="relative overflow-hidden">
+          <img src={img} alt={title} className="aspect-[4/5] w-full object-cover" width={1024} height={1024} loading="lazy" />
+          <span className="absolute left-0 top-0 bg-navy-deep px-5 py-3 font-mono text-sm text-gold">{n}</span>
+        </div>
+      </Reveal>
+      <Reveal delay={150} className={`md:col-span-5 md:pt-10 ${reverse ? "md:col-start-1" : "md:col-start-8"}`}>
+        <span className="label-mono text-gold">Category {n}</span>
+        <h2 className="mt-4 text-4xl font-extrabold leading-[1.02] text-navy md:text-5xl">{title}</h2>
+        <div className="mt-8 space-y-4 leading-relaxed text-muted-foreground">{children}</div>
+      </Reveal>
     </div>
   );
 }
@@ -79,146 +91,143 @@ function Feature({ n, title, img, reverse, children }: { n: number; title: strin
 function Products() {
   return (
     <>
-      <PageHero title="Our Products" subtitle="Complete valve, instrumentation, automation and mechanical solutions for the energy industry." />
+      <PageHero
+        index="03"
+        label="Our Products"
+        title={<>Complete <span className="text-gold">process</span> solutions.</>}
+        subtitle="Valves, instrumentation, automation and mechanical equipment for the full energy value chain."
+      />
 
-      {/* 1. Valves */}
-      <section className="mx-auto max-w-7xl px-6 py-24">
-        <Feature n={1} title="Valves – Actuation & Control" img={actuatorImg}>
+      {/* Category index */}
+      <nav className="sticky top-[64px] z-30 border-b border-navy/10 bg-background/90 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl gap-8 overflow-x-auto px-6">
+          {categories.map((c) => (
+            <a key={c.id} href={`#${c.id}`} className="group flex shrink-0 items-baseline gap-2 py-4 text-sm font-semibold text-navy">
+              <span className="font-mono text-[10px] text-gold">{c.n}</span>
+              <span className="link-underline">{c.name}</span>
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <section className="mx-auto max-w-7xl px-6 py-28 md:py-36">
+        <Feature id="valves" n="01" title="Valves – Actuation & Control" img={actuatorImg}>
           <p>
-            Shinetech Innovate offers highly specialised valve solutions for the oil and gas industry —
-            upstream, midstream and downstream. Leveraging our engineering expertise and network of
-            approved manufacturers, we provide complete valve packages from single items to complete
-            project requirements.
+            Highly specialised valve solutions for upstream, midstream and downstream oil and gas.
+            Through our engineering expertise and network of approved manufacturers, we provide
+            complete valve packages — from single items to full project requirements.
           </p>
-          <p>
-            We offer advanced valve automation solutions tailored to customer specifications, with
-            experienced engineers supporting selection, sizing and integration.
-          </p>
-          <div className="grid gap-6 pt-4 sm:grid-cols-2">
-            <div className="border-l-2 border-gold pl-4">
-              <h3 className="font-bold text-navy">Actuator types</h3>
-              <p className="mt-2 text-sm">Hydraulic · Pneumatic · Gas-over-oil · Electric · Electro-hydraulic</p>
+          <p>Advanced valve automation tailored to customer specifications, with engineers supporting selection, sizing and integration.</p>
+          <div className="grid gap-8 pt-4 sm:grid-cols-2">
+            <div>
+              <h3 className="label-mono text-navy">Actuator types</h3>
+              <p className="mt-3 text-sm">Hydraulic · Pneumatic · Gas-over-oil · Electric · Electro-hydraulic</p>
             </div>
-            <div className="border-l-2 border-gold pl-4">
-              <h3 className="font-bold text-navy">Configurations</h3>
-              <p className="mt-2 text-sm">Single acting · Double acting · On/Off, ESD/SDV and blowdown · Smart systems</p>
+            <div>
+              <h3 className="label-mono text-navy">Configurations</h3>
+              <p className="mt-3 text-sm">Single / double acting · On/Off, ESD/SDV, blowdown · Smart systems</p>
             </div>
           </div>
         </Feature>
       </section>
 
       {/* Types of valves */}
-      <section className="bg-muted">
-        <div className="mx-auto max-w-7xl px-6 py-24">
-          <SectionTitle eyebrow="Range" title="Types of Valves" />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {valves.map((v) => (
-              <div key={v.name} className="group border bg-card p-6 text-center transition hover:-translate-y-1 hover:shadow-elevated">
-                <div className="overflow-hidden">
-                  <img src={v.img} alt={v.name} className="mx-auto h-48 w-48 object-contain transition duration-500 group-hover:scale-105" width={480} height={480} loading="lazy" />
+      <section className="bg-muted py-28 md:py-36">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeader index="01.1" label="Range" title="Types of valves" />
+          <div className="mt-16 grid border-l border-t border-navy/10 sm:grid-cols-2 lg:grid-cols-3">
+            {valves.map((v, i) => (
+              <Reveal key={v.name} delay={(i % 3) * 90} className="border-b border-r border-navy/10">
+                <div className="group h-full bg-card p-8 transition-colors duration-500 hover:bg-cream">
+                  <div className="flex items-start justify-between">
+                    <span className="label-mono text-muted-foreground/60">V-{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <img src={v.img} alt={v.name} className="mx-auto my-6 h-48 w-48 object-contain mix-blend-multiply transition duration-700 group-hover:scale-105" width={480} height={480} loading="lazy" />
+                  <h3 className="text-2xl font-bold text-navy">{v.name}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{v.items.join(" · ")}</p>
                 </div>
-                <h3 className="mt-4 text-lg font-bold text-navy">{v.name}</h3>
-                <ListBlock items={v.items} />
-              </div>
+              </Reveal>
             ))}
           </div>
-          <div className="mt-6 grid gap-6 md:grid-cols-2">
+          <div className="mt-px grid gap-px md:grid-cols-2">
             {otherValves.map((v) => (
-              <div key={v.name} className="border-t-2 border-gold bg-navy p-8 text-center">
-                <h3 className="text-lg font-bold text-navy-foreground">{v.name}</h3>
-                <ul className="mt-4 flex flex-wrap justify-center gap-2">
+              <Reveal key={v.name} className="bg-navy-deep p-10">
+                <h3 className="text-2xl font-bold text-navy-foreground">{v.name}</h3>
+                <ul className="mt-6 flex flex-wrap gap-2">
                   {v.items.map((i) => (
-                    <li key={i} className="border border-navy-foreground/20 px-3 py-1 text-xs text-navy-foreground/85">{i}</li>
+                    <li key={i} className="label-mono border border-navy-foreground/20 px-3 py-2 text-navy-foreground/80">{i}</li>
                   ))}
                 </ul>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 2. Control & Automation */}
-      <section className="mx-auto max-w-7xl px-6 py-24">
-        <Feature n={2} title="Control & Automation" img={automationImg} reverse>
+      <section className="mx-auto max-w-7xl px-6 py-28 md:py-36">
+        <Feature id="automation" n="02" title="Control & Automation" img={automationImg} reverse>
           <p>
-            Control and automation play a pivotal role in the oil and gas industry, revolutionising
-            operations and enhancing efficiency and safety. By integrating advanced technologies such
-            as sensors, actuators and control systems, companies can remotely monitor and manage
-            critical processes in real time.
+            Integrating sensors, actuators and control systems lets operators monitor and manage
+            critical processes in real time — reducing human error, enabling predictive maintenance and
+            improving reliability across the asset life cycle.
           </p>
-          <p>
-            Automation streamlines drilling, production and refining, reduces human error and improves
-            overall reliability — enabling predictive maintenance and optimised performance across
-            the asset life cycle.
-          </p>
-          <ul className="grid gap-2 pt-2 text-sm sm:grid-cols-2">
-            {["DCS, ESD and HMI design & services", "PLC programming", "Cyber security & digitalization", "System integration"].map((i) => (
-              <li key={i} className="flex gap-2"><span className="mt-2 h-1 w-1 shrink-0 bg-gold" />{i}</li>
-            ))}
-          </ul>
+          <SpecList items={["DCS, ESD and HMI design & services", "PLC programming", "Cyber security & digitalization", "System integration"]} />
         </Feature>
       </section>
 
       {/* Field instruments */}
-      <section className="bg-navy">
-        <div className="mx-auto max-w-7xl px-6 py-24">
-          <SectionTitle eyebrow="Measurement" title="Field Instruments" light />
-          <div className="mt-14 grid gap-px bg-navy-foreground/15 sm:grid-cols-2 lg:grid-cols-3">
-            {fieldInstruments.map((f) => (
-              <div key={f.title} className="bg-navy p-8">
-                <h3 className="text-lg font-bold text-gold">{f.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-navy-foreground/75">{f.text}</p>
-              </div>
+      <section className="bg-navy-deep py-28 md:py-36">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeader index="02.1" label="Measurement" title="Field instruments" light />
+          <div className="mt-16 md:ml-[25%]">
+            {fieldInstruments.map((f, i) => (
+              <Reveal key={f.title} delay={i * 60}>
+                <div className="group grid gap-3 border-t border-navy-foreground/15 py-7 md:grid-cols-[80px_1fr_1.3fr] md:gap-8">
+                  <span className="font-mono text-sm text-gold">/0{i + 1}</span>
+                  <h3 className="text-xl font-bold text-navy-foreground transition-transform duration-500 group-hover:translate-x-2">{f.title}</h3>
+                  <p className="text-sm leading-relaxed text-navy-foreground/60">{f.text}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. Static & Mechanical */}
-      <section className="mx-auto max-w-7xl px-6 py-24">
-        <Feature n={3} title="Static & Mechanical" img={staticImg}>
+      <section className="mx-auto max-w-7xl px-6 py-28 md:py-36">
+        <Feature id="static" n="03" title="Static & Mechanical" img={staticImg}>
           <p>
-            Static and mechanical equipment are fundamental components of oil and gas operations,
-            essential for exploration, production and processing. This includes equipment such as
-            storage tanks, pipelines, pressure vessels, heat exchangers and compressors.
+            Storage tanks, pipelines, pressure vessels, heat exchangers and compressors are the
+            backbone of oil and gas operations. We supply a comprehensive range for upstream,
+            midstream and downstream facilities — built for integrity and long service life.
           </p>
-          <p>
-            We supply a comprehensive range of static and mechanical equipment for upstream,
-            midstream and downstream facilities — ensuring operational integrity, efficiency and
-            long service life.
-          </p>
-          <ul className="grid gap-2 pt-2 text-sm sm:grid-cols-2">
-            {["Pipes (line pipe, seamless, welded)", "Metal and non-metallic pipes", "Gaskets, bolting & fasteners", "Flanges & pipe fittings", "Safety relief valves", "Tank terminal products & level gauges"].map((i) => (
-              <li key={i} className="flex gap-2"><span className="mt-2 h-1 w-1 shrink-0 bg-gold" />{i}</li>
-            ))}
-          </ul>
+          <SpecList
+            items={["Pipes (line pipe, seamless, welded)", "Metal and non-metallic pipes", "Gaskets, bolting & fasteners", "Flanges & pipe fittings", "Safety relief valves", "Tank terminal products & level gauges"]}
+          />
         </Feature>
       </section>
 
-      {/* 4. Special Services */}
       <section className="bg-muted">
-        <div className="mx-auto max-w-7xl px-6 py-24">
-          <Feature n={4} title="Special Services" img={servicesImg} reverse>
+        <div className="mx-auto max-w-7xl px-6 py-28 md:py-36">
+          <Feature id="services" n="04" title="Special Services" img={servicesImg} reverse>
             <p>
-              Our special services cover a range of specialised offerings tailored to the unique needs
-              of the industry — from engineering support and site services to commissioning,
-              maintenance and regulatory compliance.
+              Specialised offerings tailored to the industry — from engineering support and site
+              services to commissioning, maintenance and regulatory compliance.
             </p>
-            <ul className="grid gap-2 pt-2 text-sm">
-              {[
-                "Valve and instrument repair & refurbishment",
+            <SpecList
+              items={[
+                "Valve & instrument repair and refurbishment",
                 "Commissioning and start-up support",
-                "Engineering, sizing and selection support",
+                "Engineering, sizing and selection",
                 "Fire and gas mapping & consultancy",
-                "Project management & procurement services",
-                "Testing, inspection and certification support",
-              ].map((i) => (
-                <li key={i} className="flex gap-2"><span className="mt-2 h-1 w-1 shrink-0 bg-gold" />{i}</li>
-              ))}
-            </ul>
+                "Project management & procurement",
+                "Testing, inspection and certification",
+              ]}
+            />
           </Feature>
         </div>
       </section>
+
+      <CtaBand title="Send us your material list." />
     </>
   );
 }
