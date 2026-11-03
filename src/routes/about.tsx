@@ -53,7 +53,7 @@ function About() {
           </div>
         </Reveal>
         <Reveal delay={150}>
-          <SectionHeader align="left" title="Innovation, Precision & Integrity" />
+          <SectionHeader title="Innovation, Precision & Integrity" />
           <p className="mt-8 text-lg leading-relaxed text-navy">
             Shinetech Innovate FZE LLC is an industrial supply and solutions company serving the oil
             &amp; gas, LNG, petrochemical, fertilizer, power and green hydrogen industries.
@@ -81,7 +81,7 @@ function About() {
             {values.map((v, i) => (
               <Reveal key={v.title} delay={i * 120}>
                 <div className="group relative h-full overflow-hidden bg-card p-10 text-center transition duration-500 hover:-translate-y-2 hover:shadow-elevated">
-                  <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-cream text-gold transition duration-500 group-hover:bg-gold group-hover:text-gold-foreground">
+                  <div className="mx-auto grid h-20 w-20 place-items-center cut-corners-sm bg-cream text-gold transition duration-500 group-hover:bg-gold group-hover:text-gold-foreground">
                     <v.icon className="h-9 w-9" strokeWidth={1.5} />
                   </div>
                   <h3 className="mt-7 text-2xl font-bold text-navy">{v.title}</h3>

@@ -148,7 +148,7 @@ function Products() {
                 <h3 className="text-2xl font-bold text-navy-foreground">{v.name}</h3>
                 <ul className="mt-6 flex flex-wrap gap-2">
                   {v.items.map((i) => (
-                    <li key={i} className="rounded-full border border-navy-foreground/20 px-4 py-1.5 text-sm text-navy-foreground/85">{i}</li>
+                    <li key={i} className="cut-corners-sm border border-navy-foreground/20 px-4 py-1.5 text-sm text-navy-foreground/85">{i}</li>
                   ))}
                 </ul>
               </Reveal>
