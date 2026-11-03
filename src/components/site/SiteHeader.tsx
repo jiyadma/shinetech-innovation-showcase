@@ -50,7 +50,7 @@ export function SiteHeader() {
           </a>
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition hover:bg-gold-soft"
+            className="group inline-flex items-center gap-2 cut-corners-sm bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition hover:bg-gold-soft"
           >
             Get a Quote <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>

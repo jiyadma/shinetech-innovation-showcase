@@ -103,7 +103,7 @@ function Contact() {
             </div>
             <button
               type="submit"
-              className="group mt-12 inline-flex items-center gap-3 rounded-full bg-navy px-8 py-4 text-sm font-bold uppercase tracking-wider text-navy-foreground transition hover:bg-gold hover:text-gold-foreground"
+              className="group mt-12 inline-flex items-center gap-3 cut-corners-sm bg-navy px-8 py-4 text-sm font-bold uppercase tracking-wider text-navy-foreground transition hover:bg-gold hover:text-gold-foreground"
             >
               Send Enquiry
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
