@@ -1,12 +1,11 @@
 // Company contact details shown across the site.
-// NOTE: phone, email and address are placeholders until the client confirms them.
 export const company = {
   name: "Shinetech Innovate FZE LLC",
   short: "Shinetech",
-  phone: "+971 50 000 0000",
-  phoneHref: "tel:+971500000000",
-  email: "info@shinetechinnovate.com",
-  address: "Free Zone, United Arab Emirates",
+  phone: "+971 54 137 2737",
+  phoneHref: "tel:+971541372737",
+  email: "sales@shinetechinnovate.com",
+  address: "CWS-1 V - 226268, 26th Floor, Amber Gem Tower, Ajman",
   hours: "Sunday – Thursday, 9:00 – 18:00",
 };
 
