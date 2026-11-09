@@ -57,7 +57,18 @@ export function SiteFooter() {
 
 
         <div className="flex flex-col items-start justify-between gap-4 py-6 sm:flex-row sm:items-center">
-          <p className="text-sm text-navy-foreground/50">© {new Date().getFullYear()} {company.name}</p>
+          <p className="text-sm text-navy-foreground/50">
+            © {new Date().getFullYear()} {company.name}
+            <span className="mx-2 text-navy-foreground/25">·</span>
+            <a
+              href="https://metametics.co/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline text-navy-foreground/60 transition hover:text-gold"
+            >
+              Designed by Metametics
+            </a>
+          </p>
           <a href="#top" className="inline-flex items-center gap-2 text-sm text-navy-foreground/60 hover:text-gold">
             Back to top <ArrowUp className="h-3.5 w-3.5" />
           </a>
