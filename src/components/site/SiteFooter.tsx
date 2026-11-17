@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUp, Facebook, Linkedin } from "lucide-react";
-import logo from "@/assets/shinetech-logo.png.asset.json";
+import logo from "@/assets/shinetech-newlogo.png";
 import { company, navLinks } from "@/lib/site";
 
 export function SiteFooter() {
@@ -9,7 +9,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-6 pt-20 pb-2">
         <div className="grid gap-14 border-b border-navy-foreground/10 pb-16 md:grid-cols-12">
           <div className="md:col-span-5">
-            <img src={logo.url} alt="Shinetech Innovate FZE LLC" className="h-12 w-auto" width={900} height={177} loading="lazy" />
+            <img src={logo} alt="Shinetech Innovate FZE LLC" className="h-12 w-auto" width={900} height={177} loading="lazy" />
             <p className="mt-8 max-w-sm text-sm leading-relaxed">
               Valves, instrumentation, automation and mechanical equipment for oil &amp; gas, LNG,
               chemicals, power and green hydrogen — supplied with precision and integrity.

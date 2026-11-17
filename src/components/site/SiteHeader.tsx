@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import logo from "@/assets/shinetech-logo.png.asset.json";
+import logo from "@/assets/shinetech-newlogo.png";
 import { company, navLinks } from "@/lib/site";
 
 export function SiteHeader() {
@@ -28,7 +28,7 @@ export function SiteHeader() {
     >
       <div className={`mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 transition-all duration-500 ${solid ? "py-3" : "py-6"}`}>
         <Link to="/" className="shrink-0" aria-label="Shinetech Innovate home">
-          <img src={logo.url} alt="Shinetech Innovate FZE LLC" className="h-9 w-auto md:h-10" width={900} height={177} />
+          <img src={logo} alt="Shinetech Innovate FZE LLC" className="h-9 w-auto md:h-10" width={900} height={177} />
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
